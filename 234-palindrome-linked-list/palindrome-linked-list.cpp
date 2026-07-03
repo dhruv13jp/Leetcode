@@ -7,24 +7,39 @@
  *     ListNode(int x) : val(x), next(nullptr) {}
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
- */
-class Solution {
-public:
-    bool isPalindrome(ListNode* head) {
-        stack<int> st;
-        ListNode* temp=head;
-        while(temp){
-            st.push(temp->val);
-            temp=temp->next;
-        }
-        temp=head;
-        bool ispalin = true;
-        while(temp){
-            if(temp->val!=st.top()) return false;
-                 
-            st.pop();
-            temp=temp->next;
-        }
-        return true;
+ */ 
+ListNode* reverselist(ListNode* head){
+    ListNode* prev=NULL;
+    ListNode* temp=head;
+    ListNode* front=head;
+    while(temp){
+        front=temp->next;
+        temp->next=prev;
+        prev=temp;
+        temp=front;
     }
-};
+    return prev;
+}   
+
+class Solution {
+public:     
+    bool isPalindrome(ListNode* head) {
+       ListNode* slow=head;
+       ListNode* fast=head;
+       ListNode* temp = head;
+       ListNode* newhead;
+       while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+       }    
+       newhead=reverselist(slow);
+       while(newhead!=NULL){
+        if(temp->val==newhead->val){
+            temp=temp->next;
+            newhead=newhead->next;
+        }   
+        else return false;
+       }    
+       return true;
+    }       
+};          
