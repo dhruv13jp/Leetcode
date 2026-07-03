@@ -20,17 +20,11 @@ public:
         temp=head;
         bool ispalin = true;
         while(temp){
-            if(temp->val==st.top()) {
-                ispalin=true;
-            }
-            else {
-                ispalin=false;
-                break;
-                } 
+            if(temp->val!=st.top()) return false;
+                 
             st.pop();
             temp=temp->next;
         }
-        if(ispalin==true) return true;
-        else return false;
+        return true;
     }
 };
