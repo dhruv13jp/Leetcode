@@ -21,11 +21,9 @@ public:
      ListNode* fast = head;
      ListNode* temp = head;
      while(fast!=NULL && fast->next!=NULL){
+        temp=slow;
         slow=slow->next;
         fast=fast->next->next;
-     }
-     while(temp->next!=slow){
-        temp=temp->next;
      }
      temp->next=temp->next->next;
      slow->next=NULL;
