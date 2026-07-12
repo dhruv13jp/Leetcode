@@ -1,19 +1,15 @@
 class Solution {
 public:
-    int singleNumber(vector<int>& nums) {   
-        int n = nums.size();
-        int count = 0;
-        int maxi = 0;
-        for(int i=0;i<n;i++){
-            count=0;
-            maxi=0;
-            for(int j=0;j<n;j++){
-                if(nums[i]==nums[j]){
-                    count+=1;
-                }
-                maxi= max(maxi,count);
+    int singleNumber(vector<int>& nums) {
+        int n =nums.size();
+        map<long long,int> mpp;
+        for(auto x:nums){
+            mpp[x]+=1;
+        }
+        for(auto x:mpp){
+            if(x.second==1){
+                return x.first;
             }
-            if(maxi==1) return nums[i];
         }
         return -1;
     }
