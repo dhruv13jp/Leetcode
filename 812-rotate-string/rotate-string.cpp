@@ -4,12 +4,10 @@ public:
         int n = s.size();
         int m = goal.size();
         if(n!=m) return false;
-        if(s==goal) return true;
-        for(int i=1;i<n;i++){
-            rotate(s.begin(),s.begin()+1,s.end());
-            if(s==goal) return true;
+        string doubled = s+s;
+        if(doubled.find(goal) != string::npos){
+            return true;
         }
-        return false;
+        else return false;
         }
-    
 };      
