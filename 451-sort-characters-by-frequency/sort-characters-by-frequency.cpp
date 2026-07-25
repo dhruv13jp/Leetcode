@@ -1,16 +1,20 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        int n = s.size();
-        vector<int> freq(256,0);
-        for(auto x : s){
-            freq[x]+=1;
+        unordered_map<char,int> freq;
+        for(auto ch:s){
+            freq[ch]++;
         }
-        auto cmp = [&](char a,char b){
-            if(freq[a] == freq[b]) return a < b;
-            return freq[a] > freq[b]; 
+        vector<pair<char,int>> freqArr;
+        for(auto [ch,fq] : freq) freqArr.push_back({ch,fq});
+
+        auto cmp = [&](pair<char,int> &a, pair<char,int> &b){
+            return a.second>b.second;
         };
-        sort(s.begin(),s.end(),cmp);
-        return s;
+        sort(freqArr.begin(),freqArr.end(),cmp);
+
+        string ans = "";
+        for(auto [ch,fq] : freqArr) ans.append(fq,ch);
+        return ans;
     }
 };
