@@ -1,13 +1,11 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        unordered_map<int,int> mpp;
-        for(auto x : nums){
-            mpp[x] ++;
+        int n = nums.size();
+        int xr = 0;
+        for(int i=0;i<n;i++){
+            xr = nums[i]^xr;
         }
-        for(auto x : nums){
-            if(mpp[x]==1) return x;
-        }
-        return -1;
+        return xr;
     }
 };
