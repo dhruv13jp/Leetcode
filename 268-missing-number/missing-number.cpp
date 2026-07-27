@@ -2,13 +2,12 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         int n = nums.size();
-        vector<int> hash(n+1,0);
-        for(auto x:nums){
-            hash[x]++;
+        int sum = 0;
+        int wsum = n*(n+1)/2;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
         }
-        for(int i=0;i<hash.size();i++){
-            if(hash[i]==0) return i;
-        }
-        return -1;
+        int result = wsum-sum;
+        return result;
     }
 };
