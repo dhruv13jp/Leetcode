@@ -12,10 +12,7 @@ public:
             if(remainder<0){
                 remainder+=k;
             }
-            if(mpp.find(remainder)!=mpp.end()){
-                result+=mpp[remainder];
-                
-            }
+            result += mpp[remainder];
             mpp[remainder]+=1;
         }
         return result;
