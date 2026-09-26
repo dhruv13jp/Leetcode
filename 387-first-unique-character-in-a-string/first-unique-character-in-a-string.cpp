@@ -1,13 +1,15 @@
 class Solution {
 public:
     int firstUniqChar(string s) {
-
-        vector<int> hash(256,0);
-        for(int i=0;i<s.length();i++){
-            hash[s[i]-'a']++;
+        int n = s.length();
+        vector<int> hash(125,0);
+        for(int i=0;i<n;i++){
+            int digit = (int)s[i];
+            hash[digit]++;
         }
-        for(int i=0;i<s.length();i++){
-            if(hash[s[i]-'a']==1) return i;
+        for(int i=0;i<n;i++){
+            int digit = (int)s[i];
+            if(hash[digit]==1) return i;
         }
         return -1;
     }
